@@ -1,0 +1,13 @@
+{
+	"name": "ytnuk/config",
+	"require": {
+		"composer/composer": "~1.0.0",
+		"nette/di": "dev-master",
+		"nette/neon": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Ytnuk\\": "src/"
+		}
+	}
+}
