@@ -30,13 +30,19 @@ final class Config
 			);
 			if (isset($extra['extensions'])) {
 				$config['extensions'] += $extensions = array_filter(
-					array_filter(
-						$extra['extensions'],
-						'is_string'
+					array_map(
+						[
+							Nette\Neon\Neon::class,
+							'decode',
+						],
+						array_filter(
+							$extra['extensions'],
+							'is_string'
+						)
 					),
-					function (string $class) {
+					function ($class) {
 						return is_subclass_of(
-							$class,
+							$class instanceof Nette\Neon\Entity ? $class->value : $class,
 							Nette\DI\CompilerExtension::class
 						);
 					}
